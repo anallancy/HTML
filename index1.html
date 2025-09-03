@@ -1,102 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Calculadora</title>
-<style>
-  :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --accent:#22d3ee; --good:#22c55e; --bad:#ef4444;}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1022,#0f172a 30%);color:var(--text);}
-  header{position:sticky;top:0;background:#0b1022cc;border-bottom:1px solid #1f2937;backdrop-filter:blur(6px)}
-  nav{max-width:1100px;margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 16px}
-  nav a, .btn{color:var(--text);text-decoration:none;padding:8px 12px;border:1px solid #334155;border-radius:999px;transition:.2s}
-  nav a:hover, .btn:hover{border-color:var(--accent);box-shadow:0 0 0 2px #22d3ee33}
-  main{max-width:1100px;margin:20px auto;padding:16px}
-  .card{background:linear-gradient(180deg,#0b1224,#0c1428);border:1px solid #1f2937;border-radius:16px;padding:16px;box-shadow:0 10px 30px #00000040}
-  h1,h2{line-height:1.1}
-  input,select,button,textarea{background:#0b1022;border:1px solid #334155;color:var(--text);padding:10px;border-radius:12px;outline:none}
-  input::placeholder,textarea::placeholder{color:var(--muted)}
-  button.btn{cursor:pointer}
-  .grid{display:grid;gap:16px}
-  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-  @media (max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr}}
-  .muted{color:var(--muted)}
-  table{width:100%;border-collapse:collapse}
-  th,td{border-bottom:1px solid #1f2937;padding:10px;text-align:left}
-  .kpi{display:flex;gap:12px;align-items:center}
-  .kpi b{font-size:1.25rem}
-
-.calculator{{max-width:360px;margin:auto}}
-.display{{font-size:2rem;text-align:right;padding:16px;border-radius:16px;background:#0a0f21;margin-bottom:10px}}
-.grid-4{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}}
-.key{{padding:14px;border-radius:14px;background:#0a0f21;border:1px solid #334155;cursor:pointer}}
-.key:active{{transform:scale(.98)}}
-</style>
+  <meta charset="UTF-8">
+  <title>Dieta para bajar de peso</title>
 </head>
 <body>
-<header><nav><div><b>Calculadora</b></div><div>
-    <a href="index.html">Dieta</a>
-    <a href="index1.html">Calculadora</a>
-    <a href="index2.html">Formulario</a>
-    <a href="index3.html">To‑Do</a>
-    <a href="index4.html">Cronómetro</a>
-    <a href="index5.html">Conversor</a>
-    <a href="index6.html">IMC</a>
-    <a href="index7.html">Quiz</a>
-    <a href="index8.html">Galería</a>
-</div></nav></header>
-<main>
-  <div class="card calculator">
-    <div id="display" class="display">0</div>
-    <div class="grid-4">
-      <button class="key" data-k="7">7</button>
-      <button class="key" data-k="8">8</button>
-      <button class="key" data-k="9">9</button>
-      <button class="key" data-k="/">÷</button>
-      <button class="key" data-k="4">4</button>
-      <button class="key" data-k="5">5</button>
-      <button class="key" data-k="6">6</button>
-      <button class="key" data-k="*">×</button>
-      <button class="key" data-k="1">1</button>
-      <button class="key" data-k="2">2</button>
-      <button class="key" data-k="3">3</button>
-      <button class="key" data-k="-">−</button>
-      <button class="key" data-k="0">0</button>
-      <button class="key" data-k=".">.</button>
-      <button class="key" id="clear">C</button>
-      <button class="key" data-k="+">+</button>
-      <button class="key" id="eq" style="grid-column:span 4">=</button>
-    </div>
-    <details style="margin-top:12px"><summary>Ver procedimiento</summary>
-      <pre id="proc" style="white-space:pre-wrap"></pre>
-    </details>
-  </div>
-</main>
-<script>
-const disp = document.getElementById('display');
-const proc = document.getElementById('proc');
-let expr = ''; let steps=[];
-function show(){{ disp.textContent = expr || '0'; }}
-document.querySelectorAll('.key[data-k]').forEach(b=> b.onclick=()=>{{ 
-  expr += b.dataset.k; show();
-}});
-document.getElementById('clear').onclick=()=>{{expr='';steps=[];show();proc.textContent='';}};
-document.getElementById('eq').onclick=()=>{{
-  try{{ 
-    steps = ['Expresión: ' + expr];
-    let js = expr.replace(/÷/g,'/').replace(/×/g,'*').replace(/−/g,'-');
-    const result = Function('return ('+js+')')();
-    steps.push('Evaluación JS: ' + js);
-    steps.push('Resultado: ' + result);
-    disp.textContent = result;
-    proc.textContent = steps.join('\n');
-    if(Number(result)%2===0) {{
-      alert('💖 Resultado par. ¡Eres increíble!');
-    }}
-    expr = String(result);
-  }}catch(e){{alert('Expresión inválida');}}
-}};
-show();
-</script>
-</body></html>
+  <h1>Dieta para bajar de peso</h1>
+  <p>Algunos consejos:</p>
+  <ul>
+    <li>Come más verduras y frutas.</li>
+    <li>Bebe suficiente agua.</li>
+    <li>Reduce comidas rápidas y azúcares.</li>
+    <li>Haz ejercicio regularmente.</li>
