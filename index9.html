@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Conversor de Moneda</title>
+</head>
+<body>
+  <h1>Conversor de Quetzales ↔ Dólares</h1>
+  
+  <p>1 USD = 7.8 GTQ (ejemplo)</p>
+
+  <h3>De Quetzales a Dólares</h3>
+  <input type="number" id="qtq" placeholder="Quetzales">
+  <button onclick="aUSD()">Convertir</button>
+  <p id="usd"></p>
+
+  <h3>De Dólares a Quetzales</h3>
+  <input type="number" id="dol" placeholder="Dólares">
+  <button onclick="aGTQ()">Convertir</button>
+  <p id="gtq"></p>
+
+  <script>
+    const tasa = 7.8; // tasa de ejemplo
+
+    function aUSD() {
+      let q = +document.getElementById("qtq").value;
+      let resultado = (q / tasa).toFixed(2);
+      document.getElementById("usd").innerText = q + " Q = " + resultado + " USD";
+    }
+
+    function aGTQ() {
+      let d = +document.getElementById("dol").value;
+      let resultado = (d * tasa).toFixed(2);
+      document.getElementById("gtq").innerText = d + " USD = " + resultado + " Q";
+    }
+  </script>
+</body>
+</html>
