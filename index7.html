@@ -1,72 +1,25 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Quiz</title><style>
-  :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --accent:#22d3ee; --good:#22c55e; --bad:#ef4444;}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1022,#0f172a 30%);color:var(--text);}
-  header{position:sticky;top:0;background:#0b1022cc;border-bottom:1px solid #1f2937;backdrop-filter:blur(6px)}
-  nav{max-width:1100px;margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 16px}
-  nav a, .btn{color:var(--text);text-decoration:none;padding:8px 12px;border:1px solid #334155;border-radius:999px;transition:.2s}
-  nav a:hover, .btn:hover{border-color:var(--accent);box-shadow:0 0 0 2px #22d3ee33}
-  main{max-width:1100px;margin:20px auto;padding:16px}
-  .card{background:linear-gradient(180deg,#0b1224,#0c1428);border:1px solid #1f2937;border-radius:16px;padding:16px;box-shadow:0 10px 30px #00000040}
-  h1,h2{line-height:1.1}
-  input,select,button,textarea{background:#0b1022;border:1px solid #334155;color:var(--text);padding:10px;border-radius:12px;outline:none}
-  input::placeholder,textarea::placeholder{color:var(--muted)}
-  button.btn{cursor:pointer}
-  .grid{display:grid;gap:16px}
-  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-  @media (max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr}}
-  .muted{color:var(--muted)}
-  table{width:100%;border-collapse:collapse}
-  th,td{border-bottom:1px solid #1f2937;padding:10px;text-align:left}
-  .kpi{display:flex;gap:12px;align-items:center}
-  .kpi b{font-size:1.25rem}
-</style></head>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+</head>
 <body>
-<header><nav><div><b>Quiz</b></div><div>
-    <a href="index.html">Dieta</a>
-    <a href="index1.html">Calculadora</a>
-    <a href="index2.html">Formulario</a>
-    <a href="index3.html">To‑Do</a>
-    <a href="index4.html">Cronómetro</a>
-    <a href="index5.html">Conversor</a>
-    <a href="index6.html">IMC</a>
-    <a href="index7.html">Quiz</a>
-    <a href="index8.html">Galería</a>
-</div></nav></header>
-<main class="grid">
-  <section class="card" style="max-width:720px">
-    <h1>Mini‑quiz de cultura general</h1>
-    <ol id="quiz"></ol>
-    <button class="btn" id="check">Revisar</button>
-    <h2 id="score">—</h2>
-  </section>
-</main>
-<script>
-const data=[
-  {{q:'¿Capital de Guatemala?', a:['Quetzaltenango','Guatemala','Antigua'], c:1}},
-  {{q:'2 + 2 × 3 = ?', a:['10','12','8'], c:0}},
-  {{q:'¿Planeta más cercano al Sol?', a:['Venus','Mercurio','Marte'], c:1}}
-];
-const root=document.getElementById('quiz');
-data.forEach((it,i)=>{{ 
-  const li=document.createElement('li'); li.style.margin='10px 0';
-  li.innerHTML = '<div class="card"><b>'+it.q+'</b><div>' +
-    it.a.map((opt,j)=>'<label style="display:block;margin-top:6px"><input type="radio" name="q'+i+'" value="'+j+'"> '+opt+'</label>').join('')
-    + '</div></div>';
-  root.appendChild(li);
-}});
-document.getElementById('check').onclick=()=>{{ 
-  let ok=0;
-  data.forEach((it,i)=>{{ 
-    const chosen = document.querySelector('input[name=q'+i+']:checked');
-    if(chosen && +chosen.value===it.c) ok++;
-  }});
-  const msg = 'Puntaje: '+ok+' / '+data.length;
-  document.getElementById('score').textContent=msg;
-  alert(msg);
-}};
-</script>
-</body></html>
+  <h1>Quiz</h1>
+  <p>¿Capital de Guatemala?</p>
+  <input type="radio" name="q1"> Quetzaltenango
+  <input type="radio" name="q1" id="ok"> Ciudad de Guatemala
+  <button onclick="rev()">Revisar</button>
+  <p id="res"></p>
+
+  <script>
+    function rev(){
+      if(document.getElementById("ok").checked){
+        document.getElementById("res").innerText="Correcto 🎉";
+      } else {
+        document.getElementById("res").innerText="Incorrecto ❌";
+      }
+    }
+  </script>
+</body>
+</html>
