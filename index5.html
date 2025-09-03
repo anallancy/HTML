@@ -1,72 +1,21 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Conversor</title><style>
-  :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --accent:#22d3ee; --good:#22c55e; --bad:#ef4444;}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1022,#0f172a 30%);color:var(--text);}
-  header{position:sticky;top:0;background:#0b1022cc;border-bottom:1px solid #1f2937;backdrop-filter:blur(6px)}
-  nav{max-width:1100px;margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 16px}
-  nav a, .btn{color:var(--text);text-decoration:none;padding:8px 12px;border:1px solid #334155;border-radius:999px;transition:.2s}
-  nav a:hover, .btn:hover{border-color:var(--accent);box-shadow:0 0 0 2px #22d3ee33}
-  main{max-width:1100px;margin:20px auto;padding:16px}
-  .card{background:linear-gradient(180deg,#0b1224,#0c1428);border:1px solid #1f2937;border-radius:16px;padding:16px;box-shadow:0 10px 30px #00000040}
-  h1,h2{line-height:1.1}
-  input,select,button,textarea{background:#0b1022;border:1px solid #334155;color:var(--text);padding:10px;border-radius:12px;outline:none}
-  input::placeholder,textarea::placeholder{color:var(--muted)}
-  button.btn{cursor:pointer}
-  .grid{display:grid;gap:16px}
-  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-  @media (max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr}}
-  .muted{color:var(--muted)}
-  table{width:100%;border-collapse:collapse}
-  th,td{border-bottom:1px solid #1f2937;padding:10px;text-align:left}
-  .kpi{display:flex;gap:12px;align-items:center}
-  .kpi b{font-size:1.25rem}
-</style></head>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cronómetro</title>
+</head>
 <body>
-<header><nav><div><b>Conversor</b></div><div>
-    <a href="index.html">Dieta</a>
-    <a href="index1.html">Calculadora</a>
-    <a href="index2.html">Formulario</a>
-    <a href="index3.html">To‑Do</a>
-    <a href="index4.html">Cronómetro</a>
-    <a href="index5.html">Conversor</a>
-    <a href="index6.html">IMC</a>
-    <a href="index7.html">Quiz</a>
-    <a href="index8.html">Galería</a>
-</div></nav></header>
-<main class="grid">
-  <section class="card">
-    <h1>Conversor rápido</h1>
-    <div class="grid grid-3">
-      <div class="card">
-        <h2>Temperatura</h2>
-        <label>Celsius<input id="c" type="number" placeholder="0"/></label>
-        <label>Fahrenheit<input id="f" type="number" placeholder="32"/></label>
-      </div>
-      <div class="card">
-        <h2>Longitud</h2>
-        <label>Metros<input id="m" type="number" placeholder="1"/></label>
-        <label>Pies<input id="ft" type="number" placeholder="3.28"/></label>
-      </div>
-      <div class="card">
-        <h2>Peso</h2>
-        <label>Kilos<input id="kg" type="number" placeholder="1"/></label>
-        <label>Libras<input id="lb" type="number" placeholder="2.20"/></label>
-      </div>
-    </div>
-  </section>
-</main>
-<script>
-function link(a,b,fn){{ 
-  a.oninput=()=>{{ if(a._lock)return; b._lock=true; b.value = fn(parseFloat(a.value||0)); b._lock=false; }}
-}}
-const c=document.getElementById('c'), f=document.getElementById('f');
-link(c,f,v=> (v*9/5+32).toFixed(2)); link(f,c,v=> ((v-32)*5/9).toFixed(2));
-const m=document.getElementById('m'), ft=document.getElementById('ft');
-link(m,ft,v=> (v*3.28084).toFixed(3)); link(ft,m,v=> (v/3.28084).toFixed(3));
-const kg=document.getElementById('kg'), lb=document.getElementById('lb');
-link(kg,lb,v=> (v*2.20462).toFixed(3)); link(lb,kg,v=> (v/2.20462).toFixed(3));
-</script>
-</body></html>
+  <h1>Cronómetro</h1>
+  <p id="tiempo">0</p>
+  <button onclick="iniciar()">Iniciar</button>
+  <button onclick="detener()">Detener</button>
+  <button onclick="reiniciar()">Reiniciar</button>
+
+  <script>
+    let seg=0, intervalo;
+    function iniciar(){ intervalo=setInterval(()=>{seg++;document.getElementById("tiempo").innerText=seg;},1000);}
+    function detener(){ clearInterval(intervalo);}
+    function reiniciar(){ seg=0; document.getElementById("tiempo").innerText=0;}
+  </script>
+</body>
+</html>
