@@ -1,91 +1,36 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Formulario de Alumno</title>
-<style>
-  :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --accent:#22d3ee; --good:#22c55e; --bad:#ef4444;}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1022,#0f172a 30%);color:var(--text);}
-  header{position:sticky;top:0;background:#0b1022cc;border-bottom:1px solid #1f2937;backdrop-filter:blur(6px)}
-  nav{max-width:1100px;margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 16px}
-  nav a, .btn{color:var(--text);text-decoration:none;padding:8px 12px;border:1px solid #334155;border-radius:999px;transition:.2s}
-  nav a:hover, .btn:hover{border-color:var(--accent);box-shadow:0 0 0 2px #22d3ee33}
-  main{max-width:1100px;margin:20px auto;padding:16px}
-  .card{background:linear-gradient(180deg,#0b1224,#0c1428);border:1px solid #1f2937;border-radius:16px;padding:16px;box-shadow:0 10px 30px #00000040}
-  h1,h2{line-height:1.1}
-  input,select,button,textarea{background:#0b1022;border:1px solid #334155;color:var(--text);padding:10px;border-radius:12px;outline:none}
-  input::placeholder,textarea::placeholder{color:var(--muted)}
-  button.btn{cursor:pointer}
-  .grid{display:grid;gap:16px}
-  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-  @media (max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr}}
-  .muted{color:var(--muted)}
-  table{width:100%;border-collapse:collapse}
-  th,td{border-bottom:1px solid #1f2937;padding:10px;text-align:left}
-  .kpi{display:flex;gap:12px;align-items:center}
-  .kpi b{font-size:1.25rem}
-</style></head>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora</title>
+</head>
 <body>
-<header><nav><div><b>Formulario</b></div><div>
-    <a href="index.html">Dieta</a>
-    <a href="index1.html">Calculadora</a>
-    <a href="index2.html">Formulario</a>
-    <a href="index3.html">To‑Do</a>
-    <a href="index4.html">Cronómetro</a>
-    <a href="index5.html">Conversor</a>
-    <a href="index6.html">IMC</a>
-    <a href="index7.html">Quiz</a>
-    <a href="index8.html">Galería</a>
-</div></nav></header>
-<main class="grid">
-  <form class="card grid" id="form" style="max-width:720px">
-    <h1>Registro de Alumno</h1>
-    <div class="grid grid-2">
-      <label>Nombre<input required name="nombre" placeholder="Nombre completo"/></label>
-      <label>Correo<input type="email" required name="correo" placeholder="nombre@correo.com"/></label>
-      <label>Edad<input type="number" min="5" max="100" name="edad" required/></label>
-      <label>Grado<select name="grado" required><option value="">Seleccione…</option><option>Primaria</option><option>Básicos</option><option>Diversificado</option></select></label>
-      <label>Teléfono<input name="tel" pattern="\d{8}" title="8 dígitos" placeholder="88888888"/></label>
-      <label>Fecha de ingreso<input type="date" name="fecha" required/></label>
-    </div>
-    <label>Observaciones<textarea name="obs" rows="3" placeholder="Notas adicionales"></textarea></label>
-    <div style="display:flex;gap:10px">
-      <button class="btn" type="submit">Guardar</button>
-      <button class="btn" type="button" id="clear">Limpiar</button>
-    </div>
-    <p class="muted">Los datos se guardan en tu navegador (localStorage).</p>
-  </form>
-  <section class="card">
-    <h2>Registros</h2>
-    <table id="tabla"><thead><tr><th>Nombre</th><th>Correo</th><th>Edad</th><th>Grado</th><th>Tel</th><th>Fecha</th><th></th></tr></thead><tbody></tbody></table>
-  </section>
-</main>
-<script>
-const key='alumnos';
-const form=document.getElementById('form');
-const tbody=document.querySelector('#tabla tbody');
-function load(){{ return JSON.parse(localStorage.getItem(key)||'[]'); }}
-function save(arr){{ localStorage.setItem(key,JSON.stringify(arr)); }}
-function render(){{ 
-  tbody.innerHTML='';
-  load().forEach((a,i)=>{{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>$\{{a.nombre}}</td><td>$\{{a.correo}}</td><td>$\{{a.edad}}</td><td>$\{{a.grado}}</td><td>$\{{a.tel||''}}</td><td>$\{{a.fecha}}</td>
-    <td><button class="btn" data-i="$\{{i}}">🗑️</button></td>`;
-    tbody.appendChild(tr);
-  }});
-}}
-form.onsubmit=e=>{{ 
-  e.preventDefault();
-  const data=Object.fromEntries(new FormData(form).entries());
-  const arr=load(); arr.push(data); save(arr); form.reset(); render();
-}};
-document.getElementById('clear').onclick=()=>form.reset();
-tbody.onclick=e=>{{ 
-  if(e.target.matches('button')){{
-    const i=+e.target.dataset.i; const arr=load(); arr.splice(i,1); save(arr); render();
-  }}
-}};
-render();
-</script>
-</body></html>
+  <h1>Calculadora</h1>
+  <input type="number" id="num1">
+  <select id="op">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+  <input type="number" id="num2">
+  <button onclick="calcular()">Calcular</button>
+  <p id="res"></p>
+
+  <script>
+    function calcular() {
+      let n1 = parseFloat(document.getElementById('num1').value);
+      let n2 = parseFloat(document.getElementById('num2').value);
+      let op = document.getElementById('op').value;
+      let r = 0;
+
+      if(op==="+") r=n1+n2;
+      if(op==="-") r=n1-n2;
+      if(op==="*") r=n1*n2;
+      if(op==="/") r=n1/n2;
+
+      document.getElementById('res').innerText = "Resultado: " + r;
+    }
+  </script>
+</body>
+</html>
