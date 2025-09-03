@@ -1,65 +1,13 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Galería</title><style>
-  :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --accent:#22d3ee; --good:#22c55e; --bad:#ef4444;}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1022,#0f172a 30%);color:var(--text);}
-  header{position:sticky;top:0;background:#0b1022cc;border-bottom:1px solid #1f2937;backdrop-filter:blur(6px)}
-  nav{max-width:1100px;margin:auto;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 16px}
-  nav a, .btn{color:var(--text);text-decoration:none;padding:8px 12px;border:1px solid #334155;border-radius:999px;transition:.2s}
-  nav a:hover, .btn:hover{border-color:var(--accent);box-shadow:0 0 0 2px #22d3ee33}
-  main{max-width:1100px;margin:20px auto;padding:16px}
-  .card{background:linear-gradient(180deg,#0b1224,#0c1428);border:1px solid #1f2937;border-radius:16px;padding:16px;box-shadow:0 10px 30px #00000040}
-  h1,h2{line-height:1.1}
-  input,select,button,textarea{background:#0b1022;border:1px solid #334155;color:var(--text);padding:10px;border-radius:12px;outline:none}
-  input::placeholder,textarea::placeholder{color:var(--muted)}
-  button.btn{cursor:pointer}
-  .grid{display:grid;gap:16px}
-  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-  @media (max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr}}
-  .muted{color:var(--muted)}
-  table{width:100%;border-collapse:collapse}
-  th,td{border-bottom:1px solid #1f2937;padding:10px;text-align:left}
-  .kpi{display:flex;gap:12px;align-items:center}
-  .kpi b{font-size:1.25rem}
-
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
-.gallery img{width:100%;height:160px;object-fit:cover;border-radius:14px;border:1px solid #1f2937;cursor:pointer}
-.modal{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center}
-.modal img{max-width:90vw;max-height:80vh;border-radius:16px;border:1px solid #1f2937}
-</style></head>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Galería</title>
+</head>
 <body>
-<header><nav><div><b>Galería</b></div><div>
-    <a href="index.html">Dieta</a>
-    <a href="index1.html">Calculadora</a>
-    <a href="index2.html">Formulario</a>
-    <a href="index3.html">To‑Do</a>
-    <a href="index4.html">Cronómetro</a>
-    <a href="index5.html">Conversor</a>
-    <a href="index6.html">IMC</a>
-    <a href="index7.html">Quiz</a>
-    <a href="index8.html">Galería</a>
-</div></nav></header>
-<main class="grid">
-  <section class="card">
-    <h1>Galería de imágenes</h1>
-    <div class="gallery" id="gal"></div>
-    <div class="modal" id="modal"><img id="big"/><button class="btn" id="close" style="position:absolute;top:20px;right:20px">Cerrar</button></div>
-  </section>
-</main>
-<script>
-const imgs=[
-  'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee',
-  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429',
-  'https://images.unsplash.com/photo-1549880338-65ddcdfd017b',
-  'https://images.unsplash.com/photo-1495567720989-cebdbdd97913',
-  'https://images.unsplash.com/photo-1501785888041-af3ef285b470',
-  'https://images.unsplash.com/photo-1519681393784-d120267933ba'
-];
-const gal=document.getElementById('gal'), modal=document.getElementById('modal'), big=document.getElementById('big');
-imgs.forEach(u=>{{ const i=new Image(); i.src=u+'?auto=format&fit=crop&w=600&q=60'; i.onclick=()=>{{big.src=u+'?auto=format&fit=crop&w=1600&q=80'; modal.style.display='flex';}}; gal.appendChild(i); }});
-document.getElementById('close').onclick=()=> modal.style.display='none';
-modal.onclick=e=>{{ if(e.target===modal) modal.style.display='none'; }};
-</script>
-</body></html>
+  <h1>Galería</h1>
+  <img src="https://via.placeholder.com/150" alt="foto1">
+  <img src="https://via.placeholder.com/150" alt="foto2">
+  <img src="https://via.placeholder.com/150" alt="foto3">
+</body>
+</html>
